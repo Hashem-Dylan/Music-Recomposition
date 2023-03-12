@@ -43,3 +43,26 @@ Here is an example of one row:
 | Mix_path  | Electric_Bass_pick_path | Glockenspiel_path | ... | Duration |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | path/to/slakh2100_00028_-1.wav  | path/to/slakh2100_00028_Electric Bass pick.wav  |  | ... | 255.3379819 |
+
+Note that the `Duration` column must be derived for every song in the dataset. Also note how it is possible for a mixed song to not contain a stem file for all instruments you are training for. Spleeter's training pipeline does permit blank data. In other words, there must be an audio file present for every song and all instruments you are training for.
+
+#### Data Synthesis
+To tackle the problem mentioned above, we split Slakh2100 in two partitions: 1) for training/validation, and 2) reserve tracks and stems to fill in missing data.
+
+For a `Song S`, missing a stem file for `Instrument I`, we randomly pick a stem file for `I` from the `Reserve -> R_i`. We then merge `S` and `R_i` so the mixed audio file contains this new stem. Lastly, we replace the blank cell in the `.csv` for `I` with `R_i`.
+
+#### Other Parameters to Check & Fix
+Spleeter's training pipeline requires the `number of (audio) channels` to be **at least 2** (depending on your specification within the `JSON` configuration file). When merging `.wav` files, the number of channels may get converted to 1. For this reason, we have to validate and reconfigure the channels to be 2 (or whatever you specify in the configuration file). 
+
+You must also ensure that the sample rate of all your audio files is `44100`. 
+
+Consult Spleeter's documentation for changing other parameters within your configuration file.
+
+### Storing
+Upwards of 500GB may be required for training just for **Task 1**. We utilized Google Drive as a storage solution as drive data can easily be mounted in Google Collab sessions, allowing us to run preprocessing scripts without using local memory.
+
+## Training for Task 1
+Efficiently training a custom Spleeter model using roughly 300GB of audio data required the use of High-Performance-Computer. We were allocated resources for [PSC-Bridges 2 Supercomputer][https://www.psc.edu/resources/bridges-2/user-guide-2-2/] to perform our training.
+
+Properly utilizing the HPC resources such as transfering files, evaluating credit usages, and scheduling batch jobs required lots of documentation reading and bash scripting.
+
