@@ -62,7 +62,13 @@ Consult Spleeter's documentation for changing other parameters within your confi
 Upwards of 500GB may be required for training just for **Task 1**. We utilized Google Drive as a storage solution as drive data can easily be mounted in Google Collab sessions, allowing us to run preprocessing scripts without using local memory.
 
 ## Training for Task 1
-Efficiently training a custom Spleeter model using roughly 300GB of audio data required the use of High-Performance-Computer. We were allocated resources for [PSC-Bridges 2 Supercomputer][https://www.psc.edu/resources/bridges-2/user-guide-2-2/] to perform our training.
+Efficiently training a custom Spleeter model using roughly 300GB of audio data required the use of High-Performance-Computer. We were allocated resources for [PSC-Bridges 2 Supercomputer](https://www.psc.edu/resources/bridges-2/user-guide-2-2/) to perform our training.
 
 Properly utilizing the HPC resources such as transfering files, evaluating credit usages, and scheduling batch jobs required lots of documentation reading and bash scripting.
 
+Our training was performed on 8 V100 GPUs, each with 16GB of GPU memory. The total training time for 200,000 global steps was 10 days. 
+
+## Future Improvements
+Our source-separation model could have used lots more data for training. We also could have trained our model for longer. For instance, Spleeter's "5Stems" model had been trained till 2.5 million steps. 
+
+We have compiled and preprocessed more datasets (such as MUSDB-18 and MEDLEYDB) that developers can use to further improve the model. At the same time, we realize that having access to enough compute power (GPUs and CPUs) for training can be a restriction for most.
