@@ -10,11 +10,14 @@ Like our goal, our work is two-fold as well:
 
 ## Open-Source Tools We Use
 1) [Spleeter](https://github.com/deezer/spleeter) - a library that provides the model architecture and training pipeline (using tensorflow backend) that allows us to train a custom model for source separation. Under the hood, Spleeter creates [spectograms](https://pnsn.org/spectrograms/what-is-a-spectrogram#:~:text=A%20spectrogram%20is%20a%20visual,energy%20levels%20vary%20over%20time.) for each instrument you want to train and learns classification from them using a [UNET architecture](https://paperswithcode.com/method/u-net#:~:text=U%2DNet%20is%20an%20architecture,architecture%20of%20a%20convolutional%20network.).
-2) 
+2) TODO
 
 ## Limitations of Spleeter
 1) The major limitation of the current pretrained models that Spleeter has to offer is the lack of variation in instruments. Currently, Spleeter has a "5Stems" model (trained on around 100 songs) that can classify and separate 3 instruments (not including vocals): piano, drums, and bass. We want to extend this classification boundary to 12 instruments: `Electric_Bass_pick, Glockenspiel, Bright_Acoustic_Piano, Rock_Organ, String_Ensemble_1, Distortion_Guitar, Brass_Section, Electric_Grand_Piano, Electric_Guitar_clean, Acoustic_Guitar_nylon, Violin, Drums`
 2) The other major limitation of Spleeter is that it is relatively difficult to use as configuration steps for training a custom model are not explained clearly (even in the presence of a dedicated wiki page).
+
+## Use of our Model
+TODO
 
 ## The Data Processing Challenge
 The main challenge of completing **Task 1** is *gathering* quality music data, *storing* it in a normalized manner, and *preprocessing* it for Spleeter's training pipeline.
